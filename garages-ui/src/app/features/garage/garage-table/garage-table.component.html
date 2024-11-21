@@ -1,0 +1,36 @@
+<div class="container">
+  <mat-spinner *ngIf="loading" diameter="50"></mat-spinner>
+
+  <mat-table [dataSource]="garages" class="mat-elevation-z8">
+    <ng-container matColumnDef="shem_mosah">
+      <mat-header-cell *matHeaderCellDef>שם המוסך</mat-header-cell>
+      <mat-cell *matCellDef="let garage">{{ garage.shem_mosah }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="telephone">
+      <mat-header-cell *matHeaderCellDef>טלפון</mat-header-cell>
+      <mat-cell *matCellDef="let garage">{{ garage.telephone }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="miktzoa">
+      <mat-header-cell *matHeaderCellDef>מקצוע</mat-header-cell>
+      <mat-cell *matCellDef="let garage">{{ garage.miktzoa }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-form-field>
+    <mat-label>בחר מוסכים להוספה</mat-label>
+    <mat-select [(value)]="selectedGarages" multiple>
+      <mat-option *ngFor="let garage of garages" [value]="garage">
+        {{ garage.shem_mosah }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="addGarages()">
+    הוספה
+  </button>
+</div>
