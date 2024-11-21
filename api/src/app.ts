@@ -1,8 +1,9 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+import cors from "cors";
+
 import garageRoutes from "./routes/garageRoutes";
 import { closeDB } from "./database/mongoClient";
-
 dotenv.config();
 
 const app: Express = express();
@@ -14,6 +15,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use(express.json());
 app.use("/garage", garageRoutes);
+app.use(cors());
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
