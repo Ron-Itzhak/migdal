@@ -1,29 +1,20 @@
 import express, { Request, Response } from "express";
 import {
-  fetchGaragesFromAPI,
-  saveGaragesToDB,
-  getGaragesFromDB,
-  addGarageToDB,
+  fetchExternalGarages,
+  saveGarages,
+  getGarages,
+  addGarages,
 } from "../services/garageService";
 import { validateDto } from "../middlewares/validationMiddleware";
-import { GarageDto } from "../dto/GarageDto";
+import { GarageListDto } from "../dto/GarageDto";
 
 const router = express.Router();
 
-router.get("/sync", async (req: Request, res: Response) => {
-  try {
-    const garages = await fetchGaragesFromAPI();
-    const insertedCount = await saveGaragesToDB(garages);
-    res.json({ message: `${insertedCount} garages synced successfully.` });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to sync garages." });
-  }
-});
-
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const garages = await getGaragesFromDB();
+    const fetchedGarages = await fetchExternalGarages();
+    await saveGarages(fetchedGarages);
+    const garages = await getGarages();
     res.json(garages);
   } catch (error) {
     console.error(error);
@@ -33,12 +24,12 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.post(
   "/",
-  validateDto(GarageDto),
+  validateDto(GarageListDto),
   async (req: Request, res: Response) => {
     try {
-      const garage = req.body;
-      const insertedGarage = await addGarageToDB(garage);
-      res.status(201).json(insertedGarage);
+      const { garages } = req.body;
+      const insertedGarages = await addGarages(garages);
+      res.status(201).json(insertedGarages);
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Failed to add the garage." });

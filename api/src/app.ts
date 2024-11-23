@@ -6,6 +6,8 @@ import garageRoutes from "./routes/garageRoutes";
 import { closeDB } from "./database/mongoClient";
 dotenv.config();
 
+import "reflect-metadata";
+
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
@@ -14,7 +16,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use(express.json());
-app.use("/garage", garageRoutes);
+app.use("/garages", garageRoutes);
 app.use(cors());
 
 app.listen(port, () => {

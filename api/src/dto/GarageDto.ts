@@ -1,15 +1,15 @@
 import {
   IsInt,
   IsString,
-  IsOptional,
   IsPhoneNumber,
   Length,
+  IsArray,
+  ValidateNested,
 } from "class-validator";
-import { ObjectId } from "mongodb";
 
 export class GarageDto {
-  @IsOptional()
-  _id?: ObjectId;
+  @IsInt()
+  _id: number;
 
   @IsInt()
   mispar_mosah: number;
@@ -52,4 +52,10 @@ export class GarageDto {
 
   @IsInt()
   rasham_havarot: string;
+}
+
+export class GarageListDto {
+  @IsArray()
+  @ValidateNested({ each: true })
+  garages: GarageDto[];
 }
