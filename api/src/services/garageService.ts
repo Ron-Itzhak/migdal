@@ -1,6 +1,6 @@
 import { Db } from "mongodb";
 import { connectToDB } from "../database/mongoClient";
-import { GarageDto } from "../dto/GarageDto";
+import { GarageDto } from "../dto/garageDto";
 
 const COLLECTION_NAME = process.env.COLLECTION_NAME || "garages";
 

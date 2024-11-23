@@ -37,3 +37,20 @@ $garages-ui-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-mdc-snack-bar-container {
+  &.snack-bar-error {
+    --mdc-snackbar-container-color: #dc143c;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+    }
+}
+
+.mat-mdc-snack-bar-container {
+  &.snack-bar-success {
+    --mdc-snackbar-container-color: #1a5eaf;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+}

@@ -6,7 +6,7 @@ import {
   addGarages,
 } from "../services/garageService";
 import { validateDto } from "../middlewares/validationMiddleware";
-import { GarageListDto } from "../dto/GarageDto";
+import { GarageListDto } from "../dto/garageDto";
 
 const router = express.Router();
 
