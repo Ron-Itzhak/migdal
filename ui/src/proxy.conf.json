@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "http://app:9000",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
