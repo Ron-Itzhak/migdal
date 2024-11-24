@@ -1,5 +1,5 @@
 export interface Garage {
-  _id: string;
+  _id: number;
   mispar_mosah: number;
   shem_mosah: string;
   cod_sug_mosah: number;

@@ -51,7 +51,7 @@ export class GarageDto {
   menahel_miktzoa: string;
 
   @IsInt()
-  rasham_havarot: string;
+  rasham_havarot: number;
 }
 
 export class GarageListDto {
